@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#MISE description="Run plugin tests - install and execute tool"
+set -euo pipefail
+
+mise plugin link --force crystalline .
+mise cache clear
+mise install crystalline@0.17.1
+
+# Capture and display the output while also verifying it
+output=$(mise exec "crystalline@0.17.1" -- "crystalline" --version)
+echo "crystalline output: ${output}"
+
+if echo "${output}" | grep -q '0.17.1'; then
+  echo "✓ Tests passed"
+else
+  echo "✗ Test failed: expected version crystalline@0.17.1"
+  exit 1
+fi
