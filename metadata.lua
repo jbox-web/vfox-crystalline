@@ -8,4 +8,5 @@ PLUGIN = {
   description = "A mise tool plugin for crystalline",
   author = "n-rodriguez",
   updateUrl = "https://github.com/jbox-web/vfox-crystalline",
+  depends = {"crystal"},
 }
