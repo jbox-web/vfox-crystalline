@@ -4,15 +4,15 @@ set -euo pipefail
 
 mise plugin link --force crystalline .
 mise cache clear
-mise install crystalline@0.17.1
+mise install crystalline@0.18.0
 
 # Capture and display the output while also verifying it
-output=$(mise exec "crystalline@0.17.1" -- "crystalline" --version)
+output=$(mise exec "crystalline@0.18.0" -- "crystalline" --version)
 echo "crystalline output: ${output}"
 
-if echo "${output}" | grep -q '0.17.1'; then
+if echo "${output}" | grep -q '0.18.0'; then
   echo "✓ Tests passed"
 else
-  echo "✗ Test failed: expected version crystalline@0.17.1"
+  echo "✗ Test failed: expected version crystalline@0.18.0"
   exit 1
 fi
