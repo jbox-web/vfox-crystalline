@@ -40,6 +40,10 @@ jobs:
       - name: Setup mise
         uses: jdx/mise-action@v4
 
+      - name: Install macOS runtime dependencies
+        if: runner.os == 'macOS'
+        run: brew bundle --file Brewfile
+
       - name: Test plugin
         run: mise run test
         env:

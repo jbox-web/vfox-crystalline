@@ -15,9 +15,10 @@ function PLUGIN:PostInstall(ctx)
   local binaries = {[binary] = PLUGIN.name}
   install_from_map(path, binaries)
 
-  -- Verify installation works
+  -- Verify installation works. Don't redirect output so the real cause
+  -- (e.g. a dyld library load failure) is reported instead of being swallowed.
   local destFile = path .. "/bin/" .. PLUGIN.name
-  local result = os.execute(destFile .. " --version > /dev/null 2>&1")
+  local result = os.execute(destFile .. " --version")
   if result ~= 0 then
     error(PLUGIN.name .. " installation appears to be broken")
   end
